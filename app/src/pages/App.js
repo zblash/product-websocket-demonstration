@@ -1,19 +1,19 @@
 import "./App.css";
-import { Provider, useSelector, useDispatch } from "react-redux";
-import store from "./store";
-import { WebSocketProvider } from "../contexts/websocketContext";
-import AddProductComponent from "./AddProductComponent";
-import HomeComponent from "./HomeComponent";
+import { Provider } from "react-redux";
+import store from "../redux/store";
+import { WebSocketContextProvider } from "../contexts/websocketContext";
+import AddProductComponent from "./addProductComponent";
+import HomeComponent from "./homeComponent";
 
 function App() {
   return (
     <Provider store={store}>
-      <WebSocketProvider>
+      <WebSocketContextProvider>
         <div className="App">
-          <HomeComponent />
+          <AddProductComponent />
           <HomeComponent />
         </div>
-      </WebSocketProvider>
+      </WebSocketContextProvider>
     </Provider>
   );
 }

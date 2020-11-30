@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useWebSocketContext } from "../contexts/websocketContext";
 
 function AddProductComponent() {
@@ -9,22 +8,22 @@ function AddProductComponent() {
 
   const sendProduct = React.useCallback(() => {
     ws.sendProduct({ id: productId, name: productName });
-  }, [productId, productName]);
+  }, [productId, productName, ws]);
   return (
     <div className="add-product">
       <input
         type="text"
         placeholder="Product Id"
-        value={productId}
         onChange={(e) => setProductId(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Product Id"
-        value={productId}
-        onChange={(e) => setProductId(e.target.value)}
+        placeholder="Product Name"
+        onChange={(e) => setProductName(e.target.value)}
       />
       <button onClick={sendProduct}>Add</button>
     </div>
   );
 }
+
+export default AddProductComponent;

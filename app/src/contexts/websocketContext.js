@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import io from "socket.io-client";
 import { WS_BASE } from "../constants";
 import { useDispatch } from "react-redux";
-import { receiveProducts } from "./actions";
+import { receiveProducts } from "../redux/actions";
 
 const WebSocketContext = createContext(null);
 
@@ -16,13 +16,13 @@ const WebSocketContextProvider = ({ children }) => {
     const payload = {
       product,
     };
+    console.log("asda", socket);
     socket.emit("event://send-message", JSON.stringify(payload));
-    dispatch(receiveProducts(payload));
   };
 
   if (!socket) {
     socket = io.connect(WS_BASE);
-
+    console.log(socket);
     socket.on("event://get-message", (msg) => {
       const payload = JSON.parse(msg);
       dispatch(receiveProducts(payload));
